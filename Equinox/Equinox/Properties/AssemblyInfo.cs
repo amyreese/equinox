@@ -8,8 +8,8 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Equinox")]
 [assembly: AssemblyProduct("Equinox")]
 [assembly: AssemblyDescription("")]
-[assembly: AssemblyCompany("LeetCode.net")]
-[assembly: AssemblyCopyright("Copyright © LeetCode.net 2010")]
+[assembly: AssemblyCompany("redMatter")]
+[assembly: AssemblyCopyright("Copyright © redMatter 2010")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
