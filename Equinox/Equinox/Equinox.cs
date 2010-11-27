@@ -45,10 +45,19 @@ namespace Equinox
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             Equinox game = new Equinox();
             game.Run();
+        }
+
+        public static void Log(string message)
+        {
+#if DEBUG
+#if WINDOWS
+            Console.Out.WriteLine(message);
+#endif
+#endif
         }
     }
 }

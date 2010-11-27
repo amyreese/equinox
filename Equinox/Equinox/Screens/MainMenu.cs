@@ -7,8 +7,9 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-using Equinox.Video;
+using Equinox.Input;
 using Equinox.Objects;
+using Equinox.Video;
 
 namespace Equinox.Screens
 {
@@ -17,13 +18,17 @@ namespace Equinox.Screens
     /// </summary>
     class MainMenu : Screen
     {
+        protected InputManager input;
         protected Renderer renderer;
         protected ContentManager contentManager;
         protected Scene scene;
         protected GameObject camera;
 
+        GameObject arrow;
+
         public MainMenu(ScreenManager manager) : base(manager)
         {
+            input = new InputManager(PlayerIndex.One);
             renderer = new Renderer(game);
             contentManager = new ContentManager(game.Services, "Resources");
         }
@@ -32,7 +37,7 @@ namespace Equinox.Screens
         {
             scene = new Scene();
 
-            GameObject arrow = new GameObject();
+            arrow = new GameObject();
             arrow.model = contentManager.Load<Model>("Models/Arrow");
             arrow.position = new Coords(0, 0, -50);
 
@@ -46,9 +51,20 @@ namespace Equinox.Screens
 
         public override void Update(GameTime gameTime)
         {
+            input.Update();
+
             // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
+            if (input.Pressed(Buttons.Back))
                 screenManager.game.Exit();
+
+            if (input.Down(Buttons.A))
+            {
+                arrow.position.T *= Matrix.CreateRotationY(MathHelper.ToRadians(1f));
+            }
+            if (input.Pressed(Buttons.X))
+            {
+                arrow.position = new Coords(0, 0, -50);
+            }
 
             base.Update(gameTime);
         }

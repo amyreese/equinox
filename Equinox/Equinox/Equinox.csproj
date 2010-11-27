@@ -110,6 +110,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Input\Input.cs" />
     <Compile Include="Objects\Coords.cs" />
     <Compile Include="Objects\GameObject.cs" />
     <Compile Include="Objects\Scene.cs" />
