@@ -25,7 +25,7 @@ namespace Equinox
         public Equinox()
         {
             graphics = new GraphicsDeviceManager(this);
-            Content.RootDirectory = "Content";
+            Content.RootDirectory = "Resources";
         }
 
         /// <summary>

@@ -11,6 +11,7 @@ namespace Equinox.Video
     /// </summary>
     class Screen : DrawableGameComponent
     {
+        protected Game game;
         protected ScreenManager screenManager;
 
         /// <summary>
@@ -19,6 +20,7 @@ namespace Equinox.Video
         /// <param name="manager"></param>
         public Screen(ScreenManager manager) : base(manager.game)
         {
+            game = manager.game;
             screenManager = manager;
         }
     }

@@ -69,8 +69,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Equinox.cs" />
+    <Compile Include="Objects\Coords.cs" />
+    <Compile Include="Objects\GameObject.cs" />
+    <Compile Include="Objects\Scene.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Screens\MainMenu.cs" />
+    <Compile Include="Video\Renderer.cs" />
     <Compile Include="Video\Screen.cs" />
     <Compile Include="Video\ScreenManager.cs" />
   </ItemGroup>
