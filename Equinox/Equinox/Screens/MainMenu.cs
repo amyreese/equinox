@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
+using Equinox.Audio;
 using Equinox.Input;
 using Equinox.Objects;
 using Equinox.Video;
@@ -23,11 +24,13 @@ namespace Equinox.Screens
         protected ContentManager contentManager;
         protected Scene scene;
         protected GameObject camera;
+        protected AudioManager audio;
 
         GameObject arrow;
 
         public MainMenu(ScreenManager manager) : base(manager)
         {
+            audio = new AudioManager();
             input = new InputManager(PlayerIndex.One);
             renderer = new Renderer(game);
             contentManager = new ContentManager(game.Services, "Resources");
@@ -45,6 +48,8 @@ namespace Equinox.Screens
 
             camera = new GameObject();
             camera.position = new Coords(0, 0, 0);
+
+            audio.MusicTrack("AdaptiveTest");
 
             base.LoadContent();
         }
@@ -64,7 +69,10 @@ namespace Equinox.Screens
             if (input.Pressed(Buttons.X))
             {
                 arrow.position = new Coords(0, 0, -50);
+                audio.PlaySound("Bump");
             }
+
+            audio.Update();
 
             base.Update(gameTime);
         }
