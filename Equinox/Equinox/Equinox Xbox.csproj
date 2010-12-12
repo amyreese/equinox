@@ -62,6 +62,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Audio\AudioManager.cs" />
+    <Compile Include="EngineComponents\Engine.cs" />
     <Compile Include="Equinox.cs" />
     <Compile Include="Input\Input.cs" />
     <Compile Include="Objects\Coords.cs" />
@@ -80,7 +81,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Shared Content\Shared Content.contentproj">
       <Project>{AB976907-6995-48CE-B7C6-9BE8072773A2}</Project>
-      <Name>Shared Content</Name>
+      <Name>Shared Content %28Resources%29</Name>
       <XnaReferenceType>Content</XnaReferenceType>
     </ProjectReference>
   </ItemGroup>

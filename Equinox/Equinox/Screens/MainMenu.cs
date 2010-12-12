@@ -1,14 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-
-using Equinox.Audio;
-using Equinox.Input;
+using Equinox.EngineComponents;
 using Equinox.Objects;
 using Equinox.Video;
 
@@ -19,67 +13,80 @@ namespace Equinox.Screens
     /// </summary>
     class MainMenu : Screen
     {
-        protected InputManager input;
-        protected Renderer renderer;
-        protected ContentManager contentManager;
-        protected Scene scene;
-        protected GameObject camera;
-        protected AudioManager audio;
-
-        GameObject arrow;
+        private Scene _scene;
+        private GameObject arrow;
+        private GameObject truck;
+        private GameObject lizard;
 
         public MainMenu(ScreenManager manager) : base(manager)
         {
-            audio = new AudioManager();
-            input = new InputManager(PlayerIndex.One);
-            renderer = new Renderer(game);
-            contentManager = new ContentManager(game.Services, "Resources");
         }
 
         protected override void LoadContent()
         {
-            scene = new Scene();
+            _scene = Engine.NewScene();
 
             arrow = new GameObject();
-            arrow.model = contentManager.Load<Model>("Models/Arrow");
-            arrow.position = new Coords(0, 0, -50);
+            arrow.model = Engine.ContentManager.Load<Model>("Models/Arrow");
+            arrow.position = new Coords(-150, 100, 0);
+            arrow.scale = 10f;
+            arrow.position.R *= Quaternion.CreateFromYawPitchRoll(90f, 90f, 90f);
 
-            scene.Add(arrow);
+            _scene.Add(arrow);
 
-            camera = new GameObject();
-            camera.position = new Coords(0, 0, 0);
+            truck = new GameObject();
+            truck.model = Engine.ContentManager.Load<Model>("Models/L200-FBX");
+            truck.position = new Coords(0, -20, 0);
+            truck.position.R *= Quaternion.CreateFromYawPitchRoll(90f, 0, 0);
+            truck.scale = 0.25f;
 
-            audio.MusicTrack("AdaptiveTest");
+            _scene.Add(truck);
+
+            lizard = new GameObject();
+            lizard.model = Engine.ContentManager.Load<Model>("Models/lizard");
+            lizard.position = new Coords(150, -50, -200);
+            lizard.scale = 0.25f;
+
+            _scene.Add(lizard);
+
+            Engine.AudioManager.MusicTrack("AdaptiveTest");
 
             base.LoadContent();
         }
 
         public override void Update(GameTime gameTime)
         {
-            input.Update();
-
             // Allows the game to exit
-            if (input.Pressed(Buttons.Back))
+            if (Engine.InputManager.Pressed(Buttons.Back))
                 screenManager.game.Exit();
 
-            if (input.Down(Buttons.A))
+            if (Engine.InputManager.Down(Buttons.A))
             {
                 arrow.position.T *= Matrix.CreateRotationY(MathHelper.ToRadians(1f));
             }
-            if (input.Pressed(Buttons.X))
+            if (Engine.InputManager.Down(Keys.Right))
             {
-                arrow.position = new Coords(0, 0, -50);
-                audio.PlaySound("Bump");
+                lizard.position.R *= Quaternion.CreateFromYawPitchRoll(-0.05f, 0, 0);
+                truck.position.T *= Matrix.CreateTranslation(new Vector3(1f, 0f, 0f));
+            }
+            else if (Engine.InputManager.Down(Keys.Left))
+            {
+                lizard.position.R *= Quaternion.CreateFromYawPitchRoll(0.05f, 0, 0);
+                truck.position.T *= Matrix.CreateTranslation(new Vector3(-1f, 0f, 0f));
             }
 
-            audio.Update();
+            if (Engine.InputManager.Pressed(Buttons.X))
+            {
+                arrow.position = new Coords(0, 0, -50);
+                Engine.AudioManager.PlaySound("Bump");
+            }
 
             base.Update(gameTime);
         }
 
         public override void Draw(GameTime gameTime)
         {
-            renderer.Draw(scene, camera);
+            Engine.Renderer.Draw(Engine.Scene, Engine.Camera);
 
             base.Draw(gameTime);
         }

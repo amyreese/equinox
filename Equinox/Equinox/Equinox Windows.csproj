@@ -111,6 +111,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Audio\AudioManager.cs" />
+    <Compile Include="EngineComponents\Engine.cs" />
     <Compile Include="Input\Input.cs" />
     <Compile Include="Objects\Coords.cs" />
     <Compile Include="Objects\GameObject.cs" />
@@ -156,10 +157,11 @@
   <ItemGroup>
     <ProjectReference Include="..\Shared Content\Shared Content.contentproj">
       <Project>{AB976907-6995-48CE-B7C6-9BE8072773A2}</Project>
-      <Name>Shared Content</Name>
+      <Name>Shared Content %28Resources%29</Name>
       <XnaReferenceType>Content</XnaReferenceType>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
   <!--

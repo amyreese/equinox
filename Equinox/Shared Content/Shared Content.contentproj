@@ -42,12 +42,50 @@
       <Processor>ModelProcessor</Processor>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Compile Include="Audio\Equinox.xap">
       <Name>Equinox</Name>
       <Importer>XactImporter</Importer>
       <Processor>XactProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models\L200-FBX.fbx">
+      <Name>L200-FBX</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ToonShadingModelProcessor</Processor>
+      <ProcessorParameters_LineThickness>8</ProcessorParameters_LineThickness>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\NormalMappingEffectPipeline\NormalMappingEffectPipeline.csproj">
+      <Project>{C44E8242-004C-4CAF-B0CE-156C6236B282}</Project>
+      <Name>NormalMappingEffectPipeline</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ToonShadingEffectPipeline\ToonShadingEffectPipeline.csproj">
+      <Project>{8BE2A4F5-2E5F-4125-95F4-9877B208063C}</Project>
+      <Name>ToonShadingEffectPipeline</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models\lizard.fbx">
+      <Name>lizard</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>NormalMappingModelProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Shaders\ToonShader.fx">
+      <Name>ToonShader</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Shaders\NormalMapping.fx">
+      <Name>NormalMapping</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />

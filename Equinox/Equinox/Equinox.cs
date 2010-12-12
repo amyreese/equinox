@@ -1,16 +1,7 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
 
-using Equinox.Screens;
-using Equinox.Video;
+using Equinox.EngineComponents;
 
 namespace Equinox
 {
@@ -20,7 +11,6 @@ namespace Equinox
     public class Equinox : Microsoft.Xna.Framework.Game
     {
         GraphicsDeviceManager graphics;
-        ScreenManager screenManager;
 
         public Equinox()
         {
@@ -36,10 +26,16 @@ namespace Equinox
         /// </summary>
         protected override void Initialize()
         {
-            screenManager = new ScreenManager(this);
-            screenManager.Push(new MainMenu(screenManager));
+            Engine.Initialize(this, graphics, this.Content);
 
             base.Initialize();
+        }
+
+        protected override void Update(GameTime gameTime)
+        {
+            Engine.Update(gameTime);
+
+            base.Update(gameTime);
         }
 
         /// <summary>
