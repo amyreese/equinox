@@ -19,21 +19,15 @@ namespace Equinox.Screens
     /// </summary>
     class MainMenu : Screen
     {
-        protected InputManager input;
-        protected Renderer renderer;
         protected ContentManager contentManager;
         protected Scene scene;
         protected GameObject camera;
-        protected AudioManager audio;
 
         GameObject arrow;
 
-        public MainMenu(ScreenManager manager) : base(manager)
+        public MainMenu() : base()
         {
-            audio = new AudioManager();
-            input = new InputManager(PlayerIndex.One);
-            renderer = new Renderer(game);
-            contentManager = new ContentManager(game.Services, "Resources");
+            contentManager = new ContentManager(Engine.game.Services, "Resources");
         }
 
         protected override void LoadContent()
@@ -49,37 +43,33 @@ namespace Equinox.Screens
             camera = new GameObject();
             camera.position = new Coords(0, 0, 0);
 
-            audio.MusicTrack("AdaptiveTest");
+            Engine.audio.MusicTrack("AdaptiveTest");
 
             base.LoadContent();
         }
 
         public override void Update(GameTime gameTime)
         {
-            input.Update();
-
             // Allows the game to exit
-            if (input.Pressed(Buttons.Back))
-                screenManager.game.Exit();
+            if (Engine.input.Pressed(Buttons.Back))
+                Engine.game.Exit();
 
-            if (input.Down(Buttons.A))
+            if (Engine.input.Down(Buttons.A))
             {
                 arrow.position.T *= Matrix.CreateRotationY(MathHelper.ToRadians(1f));
             }
-            if (input.Pressed(Buttons.X))
+            if (Engine.input.Pressed(Buttons.X))
             {
                 arrow.position = new Coords(0, 0, -50);
-                audio.PlaySound("Bump");
+                Engine.audio.PlaySound("Bump");
             }
-
-            audio.Update();
 
             base.Update(gameTime);
         }
 
         public override void Draw(GameTime gameTime)
         {
-            renderer.Draw(scene, camera);
+            Engine.render.Draw(scene, camera);
 
             base.Draw(gameTime);
         }

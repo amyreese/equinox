@@ -11,16 +11,12 @@ namespace Equinox.Video
 {
     class Renderer
     {
-        protected Game game;
         private float fov;
         private float aspect;
 
-        public Renderer(Game game)
+        public Renderer()
         {
-            this.game = game;
-
             fov = MathHelper.ToRadians(45f);
-            aspect = game.GraphicsDevice.Viewport.AspectRatio;
         }
 
         /// <summary>
@@ -30,9 +26,11 @@ namespace Equinox.Video
         /// <param name="camera">Camera object</param>
         public void Draw(Scene scene, GameObject camera)
         {
+            aspect = Engine.graphics.Viewport.AspectRatio;
+
             List<GameObject> objects = scene.Visible();
 
-            game.GraphicsDevice.Clear(Color.Black);
+            Engine.game.GraphicsDevice.Clear(Color.Black);
 
             Matrix worldMatrix = Matrix.Identity;
             Matrix cameraMatrix = camera.position.matrix();

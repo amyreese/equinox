@@ -11,18 +11,8 @@ namespace Equinox.Video
     /// </summary>
     class ScreenManager : Stack<Screen>
     {
-        private Game _game;
-        public Game game
+        public ScreenManager() : base()
         {
-            get
-            {
-                return _game;
-            }
-        }
-
-        public ScreenManager(Game game) : base()
-        {
-            _game = game;
         }
 
         /// <summary>
@@ -33,10 +23,10 @@ namespace Equinox.Video
         {
             if (Count > 0)
             {
-                game.Components.Remove(Peek());
+                Engine.game.Components.Remove(Peek());
             }
 
-            game.Components.Add(screen);
+            Engine.game.Components.Add(screen);
 
             base.Push(screen);
         }
@@ -48,8 +38,8 @@ namespace Equinox.Video
         public new Screen Pop()
         {
             Screen current = base.Pop();
-            game.Components.Remove(current);
-            game.Components.Add(Peek());
+            Engine.game.Components.Remove(current);
+            Engine.game.Components.Add(Peek());
 
             return current;
         }

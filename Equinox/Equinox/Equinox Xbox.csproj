@@ -62,6 +62,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Audio\AudioManager.cs" />
+    <Compile Include="Engine.cs" />
     <Compile Include="Equinox.cs" />
     <Compile Include="Input\Input.cs" />
     <Compile Include="Objects\Coords.cs" />

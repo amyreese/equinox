@@ -11,17 +11,12 @@ namespace Equinox.Video
     /// </summary>
     class Screen : DrawableGameComponent
     {
-        protected Game game;
-        protected ScreenManager screenManager;
-
         /// <summary>
         /// Initialize a screen.
         /// </summary>
         /// <param name="manager"></param>
-        public Screen(ScreenManager manager) : base(manager.game)
+        public Screen() : base(Engine.game)
         {
-            game = manager.game;
-            screenManager = manager;
         }
     }
 }

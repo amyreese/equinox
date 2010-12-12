@@ -9,7 +9,7 @@ using Equinox;
 
 namespace Equinox.Input
 {
-    class InputManager
+    class InputManager : GameComponent
     {
         protected PlayerIndex player;
         protected GamePadState gamepad;
@@ -28,7 +28,7 @@ namespace Equinox.Input
         /// Create a new input manager for a given player index.
         /// </summary>
         /// <param name="playerIndex">Player index</param>
-        public InputManager(PlayerIndex playerIndex)
+        public InputManager(PlayerIndex playerIndex) : base(Engine.game)
         {
             player = playerIndex;
 
@@ -49,7 +49,7 @@ namespace Equinox.Input
                     pressedKeys[key] = false;
                     downKeys[key] = false;
 
-                    Equinox.Log("Watching key " + key);
+                    Engine.Log("Watching key " + key);
                 }
             }
 
@@ -64,7 +64,7 @@ namespace Equinox.Input
                     pressedButtons[button] = false;
                     downButtons[button] = false;
 
-                    Equinox.Log("Watching button " + button);
+                    Engine.Log("Watching button " + button);
                 }
             }
         }
@@ -88,7 +88,7 @@ namespace Equinox.Input
                 else if (down)
                 {
                     pressedButtons[button] = true;
-                    Equinox.Log("User pressed button " + button);
+                    Engine.Log("User pressed button " + button);
                 }
 
                 downButtons[button] = down;
@@ -105,7 +105,7 @@ namespace Equinox.Input
                 else if (down)
                 {
                     pressedKeys[key] = true;
-                    Equinox.Log("User pressed key " + key);
+                    Engine.Log("User pressed key " + key);
                 }
 
                 downKeys[key] = down;

@@ -111,6 +111,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Audio\AudioManager.cs" />
+    <Compile Include="Engine.cs" />
     <Compile Include="Input\Input.cs" />
     <Compile Include="Objects\Coords.cs" />
     <Compile Include="Objects\GameObject.cs" />

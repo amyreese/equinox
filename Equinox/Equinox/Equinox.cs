@@ -19,12 +19,11 @@ namespace Equinox
     /// </summary>
     public class Equinox : Microsoft.Xna.Framework.Game
     {
-        GraphicsDeviceManager graphics;
-        ScreenManager screenManager;
+        Engine engine;
+
 
         public Equinox()
         {
-            graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Resources";
         }
 
@@ -36,8 +35,8 @@ namespace Equinox
         /// </summary>
         protected override void Initialize()
         {
-            screenManager = new ScreenManager(this);
-            screenManager.Push(new MainMenu(screenManager));
+            engine = new Engine(this);
+            Components.Add(engine);
 
             base.Initialize();
         }
@@ -51,13 +50,5 @@ namespace Equinox
             game.Run();
         }
 
-        public static void Log(string message)
-        {
-#if DEBUG
-#if WINDOWS
-            Console.Out.WriteLine(message);
-#endif
-#endif
-        }
     }
 }

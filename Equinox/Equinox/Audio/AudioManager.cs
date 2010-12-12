@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Audio;
 
 namespace Equinox.Audio
 {
-    class AudioManager
+    class AudioManager : GameComponent
     {
         private AudioEngine engine;
 
@@ -20,7 +20,7 @@ namespace Equinox.Audio
         /// <summary>
         /// Initialize the audio manager.
         /// </summary>
-        public AudioManager()
+        public AudioManager() : base(Engine.game)
         {
             engine = new AudioEngine("Resources/Audio/Equinox.xgs");
 
