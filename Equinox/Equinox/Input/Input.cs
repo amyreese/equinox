@@ -72,7 +72,7 @@ namespace Equinox.Input
         /// <summary>
         /// Update the input button and key states.
         /// </summary>
-        public void Update()
+        public override void Update(GameTime gameTime)
         {
             gamepad = GamePad.GetState(player);
             keyboard = Keyboard.GetState();
@@ -110,6 +110,8 @@ namespace Equinox.Input
 
                 downKeys[key] = down;
             }
+
+            base.Update(gameTime);
         }
 
         /// <summary>

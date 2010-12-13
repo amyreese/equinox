@@ -66,9 +66,11 @@ namespace Equinox.Audio
         /// <summary>
         /// Update the audio engine state.
         /// </summary>
-        public void Update()
+        public override void Update(GameTime gameTime)
         {
             engine.Update();
+
+            base.Update(gameTime);
         }
     }
 }
