@@ -15,8 +15,7 @@ namespace Equinox
     class Engine : GameComponent
     {
         public static Game game;
-        public static GraphicsDeviceManager graphicsDeviceManager;
-        public static GraphicsDevice graphics;
+        public static GraphicsDeviceManager graphics;
 
         public static AudioManager audio;
         public static InputManager input;
@@ -27,16 +26,14 @@ namespace Equinox
         /// Initialize the core engine subsystems.
         /// </summary>
         /// <param name="g">Game instance</param>
-        public Engine(Game g)
+        public Engine(Game g, GraphicsDeviceManager graphicsDevice)
             : base(g)
         {
             Log("New Engine");
 
             game = g;
-
-            graphicsDeviceManager = new GraphicsDeviceManager(game);
-            graphics = graphicsDeviceManager.GraphicsDevice;
-
+            graphics = graphicsDevice;
+                        
             audio = new AudioManager();
             game.Components.Add(audio);
 

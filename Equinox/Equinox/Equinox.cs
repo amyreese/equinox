@@ -19,11 +19,13 @@ namespace Equinox
     /// </summary>
     public class Equinox : Microsoft.Xna.Framework.Game
     {
+        GraphicsDeviceManager graphics;
         Engine engine;
 
 
         public Equinox()
         {
+            graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Resources";
         }
 
@@ -35,7 +37,7 @@ namespace Equinox
         /// </summary>
         protected override void Initialize()
         {
-            engine = new Engine(this);
+            engine = new Engine(this, graphics);
             Components.Add(engine);
 
             base.Initialize();

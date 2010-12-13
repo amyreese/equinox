@@ -26,11 +26,11 @@ namespace Equinox.Video
         /// <param name="camera">Camera object</param>
         public void Draw(Scene scene, GameObject camera)
         {
-            aspect = Engine.graphics.Viewport.AspectRatio;
+            aspect = Engine.graphics.GraphicsDevice.Viewport.AspectRatio;
 
             List<GameObject> objects = scene.Visible();
 
-            Engine.game.GraphicsDevice.Clear(Color.Black);
+            Engine.graphics.GraphicsDevice.Clear(Color.Black);
 
             Matrix worldMatrix = Matrix.Identity;
             Matrix cameraMatrix = camera.position.matrix();
