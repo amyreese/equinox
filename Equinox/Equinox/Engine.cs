@@ -15,12 +15,12 @@ namespace Equinox
     class Engine : GameComponent
     {
         public static Game game;
-        public static GraphicsDeviceManager graphics;
+        public static GraphicsDeviceManager Graphics;
 
-        public static AudioManager audio;
-        public static InputManager input;
-        public static ScreenManager screens;
-        public static Renderer render;
+        public static AudioManager Audio;
+        public static InputManager Input;
+        public static ScreenManager Screens;
+        public static Renderer Renderer;
 
         /// <summary>
         /// Initialize the core engine subsystems.
@@ -32,18 +32,18 @@ namespace Equinox
             Log("New Engine");
 
             game = g;
-            graphics = graphicsDevice;
+            Graphics = graphicsDevice;
                         
-            audio = new AudioManager();
-            game.Components.Add(audio);
+            Audio = new AudioManager();
+            game.Components.Add(Audio);
 
-            input = new InputManager(PlayerIndex.One);
-            game.Components.Add(input);
+            Input = new InputManager(PlayerIndex.One);
+            game.Components.Add(Input);
 
-            screens = new ScreenManager();
-            screens.Push(new MainMenu());
+            Screens = new ScreenManager();
+            Screens.Push(new MainMenu());
 
-            render = new Renderer();
+            Renderer = new Renderer();
         }
 
         public override void Initialize()

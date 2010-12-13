@@ -64,7 +64,7 @@
     <Compile Include="Audio\AudioManager.cs" />
     <Compile Include="Engine.cs" />
     <Compile Include="Equinox.cs" />
-    <Compile Include="Input\Input.cs" />
+    <Compile Include="Input\InputManager.cs" />
     <Compile Include="Objects\Coords.cs" />
     <Compile Include="Objects\GameObject.cs" />
     <Compile Include="Objects\Scene.cs" />

@@ -13,10 +13,13 @@ namespace Equinox.Video
     {
         private float fov;
         private float aspect;
+        private Matrix projection;
 
         public Renderer()
         {
             fov = MathHelper.ToRadians(45f);
+            aspect = Engine.Graphics.GraphicsDevice.Viewport.AspectRatio;
+            projection = Matrix.CreatePerspectiveFieldOfView(fov, aspect, 1f, 1000f);
         }
 
         /// <summary>
@@ -26,14 +29,13 @@ namespace Equinox.Video
         /// <param name="camera">Camera object</param>
         public void Draw(Scene scene, GameObject camera)
         {
-            aspect = Engine.graphics.GraphicsDevice.Viewport.AspectRatio;
 
             List<GameObject> objects = scene.Visible();
 
-            Engine.graphics.GraphicsDevice.Clear(Color.Black);
+            Engine.Graphics.GraphicsDevice.Clear(Color.Black);
 
             Matrix worldMatrix = Matrix.Identity;
-            Matrix cameraMatrix = camera.position.matrix();
+            Matrix cameraMatrix = camera.position.camera();
             Matrix objectMatrix;
 
             foreach (GameObject obj in objects)
@@ -62,7 +64,7 @@ namespace Equinox.Video
                 {
                     effect.World = transforms[mesh.ParentBone.Index] * modelMatrix;
                     effect.View = cameraMatrix;
-                    effect.Projection = Matrix.CreatePerspectiveFieldOfView(fov, aspect, 1f, 1000f);
+                    effect.Projection = projection;
                     effect.EnableDefaultLighting();
 
                     mesh.Draw();

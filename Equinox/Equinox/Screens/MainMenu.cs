@@ -43,7 +43,7 @@ namespace Equinox.Screens
             camera = new GameObject();
             camera.position = new Coords(0, 0, 0);
 
-            Engine.audio.MusicTrack("AdaptiveTest");
+            Engine.Audio.MusicTrack("AdaptiveTest");
 
             base.LoadContent();
         }
@@ -51,17 +51,17 @@ namespace Equinox.Screens
         public override void Update(GameTime gameTime)
         {
             // Allows the game to exit
-            if (Engine.input.Pressed(Buttons.Back))
+            if (Engine.Input.Pressed(Buttons.Back))
                 Engine.game.Exit();
 
-            if (Engine.input.Down(Buttons.A))
+            if (Engine.Input.Down(Buttons.A))
             {
                 arrow.position.T *= Matrix.CreateRotationY(MathHelper.ToRadians(1f));
             }
-            if (Engine.input.Pressed(Buttons.X))
+            if (Engine.Input.Pressed(Buttons.X))
             {
                 arrow.position = new Coords(0, 0, -50);
-                Engine.audio.PlaySound("Bump");
+                Engine.Audio.PlaySound("Bump");
             }
 
             base.Update(gameTime);
@@ -69,7 +69,7 @@ namespace Equinox.Screens
 
         public override void Draw(GameTime gameTime)
         {
-            Engine.render.Draw(scene, camera);
+            Engine.Renderer.Draw(scene, camera);
 
             base.Draw(gameTime);
         }
